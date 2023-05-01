@@ -1,0 +1,27 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id 'groovy'
+}
+
+group = 'pyrkap'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+	testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
