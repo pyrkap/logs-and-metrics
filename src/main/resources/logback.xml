@@ -61,7 +61,7 @@
         <appender-ref ref="appender-test-4"/>
     </logger>
 
-    <!--KIBANA-->
+    <!--LOGSTASH-->
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>localhost:50000</destination>
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
@@ -87,10 +87,13 @@
         </encoder>
     </appender>
 
+    <logger name="logger-test-5">
+        <appender-ref ref="LOGSTASH"/>
+    </logger>
+
     <root level="INFO">
         <appender-ref ref="console"/>
         <appender-ref ref="LOGSTASH"/>
     </root>
-    <!--    <pattern>[%thread] %level %mdc %logger{35} -%kvp -%msg%n</pattern>-->
 
 </configuration>
