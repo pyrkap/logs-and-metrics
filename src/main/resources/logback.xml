@@ -62,56 +62,15 @@
     </logger>
 
     <!--KIBANA-->
-    <appender name="ELASTIC" class="com.internetitem.logback.elasticsearch.ElasticsearchAppender">
-        <url>http://localhost:9200/_bulk</url>
-        <index>logs-%date{yyyy-MM-dd}</index>
-        <type>tester</type>
-        <loggerName>es-logger</loggerName> <!-- optional -->
-        <errorLoggerName>es-error-logger</errorLoggerName> <!-- optional -->
-        <connectTimeout>30000</connectTimeout> <!-- optional (in ms, default 30000) -->
-        <errorsToStderr>false</errorsToStderr> <!-- optional (default false) -->
-        <includeCallerData>false</includeCallerData> <!-- optional (default false) -->
-        <logsToStderr>false</logsToStderr> <!-- optional (default false) -->
-        <maxQueueSize>104857600</maxQueueSize> <!-- optional (default 104857600) -->
-        <maxRetries>3</maxRetries> <!-- optional (default 3) -->
-        <readTimeout>30000</readTimeout> <!-- optional (in ms, default 30000) -->
-        <sleepTime>250</sleepTime> <!-- optional (in ms, default 250) -->
-        <rawJsonMessage>false</rawJsonMessage> <!-- optional (default false) -->
-        <includeMdc>false</includeMdc> <!-- optional (default false) -->
-        <maxMessageSize>100</maxMessageSize> <!-- optional (default -1 --><!-- optional -->
-        <properties>
-            <property name="host" value="localhost"/>
-            <property name="severity" value="%level"/>
-            <property name="thread" value="%thread"/>
-            <property name="stacktrace" value="%ex"/>
-            <property name="logger" value="%logger"/>
-        </properties>
-        <headers>
-            <header>
-                <name>Content-Type</name>
-                <value>application/json</value>
-            </header>
-        </headers>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:50000</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
     </appender>
 
-    <root level="debug">
+    <root level="INFO">
         <appender-ref ref="console"/>
-        <appender-ref ref="ELASTIC"/>
+        <appender-ref ref="LOGSTASH"/>
     </root>
-
-    <logger name="es-error-logger" level="INFO" additivity="false">
-        <appender-ref ref="FILELOGGER"/>
-    </logger>
-
-    <logger name="es-logger" level="INFO" additivity="false">
-        <appender name="ES_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <!-- ... -->
-            <encoder>
-                <pattern>%msg
-                </pattern> <!-- This pattern is important, otherwise it won't be the raw Elasticsearch format anyomre -->
-            </encoder>
-        </appender>
-    </logger>
     <!--    <pattern>[%thread] %level %mdc %logger{35} -%kvp -%msg%n</pattern>-->
 
 </configuration>

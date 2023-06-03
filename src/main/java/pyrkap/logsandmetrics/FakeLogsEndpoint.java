@@ -16,7 +16,5 @@ public class FakeLogsEndpoint {
     
     @GetMapping("/generate")
     @ResponseStatus(HttpStatus.OK)
-    void generateLog() {
-        logger.info("Fake log!");
-    }
+    void generateLog() {}
 }
