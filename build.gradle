@@ -17,6 +17,7 @@ dependencies {
 	implementation 'ch.qos.logback:logback-classic:1.4.7'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'net.logstash.logback:logstash-logback-encoder:7.3'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.0.6'
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
