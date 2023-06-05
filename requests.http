@@ -1,27 +1,50 @@
-POST http://localhost:8080/logs/info
+PUT http://localhost:8080/cyclist/new
 Content-Type: application/json
 
-{ "message": "This is sample info message, you don't need to worry" }
+{ "name":  "ppyrka" }
+
+> {% 
+    client.global.set("cyclist_id", response.body.id);
+%}
 
 ###
 
-POST http://localhost:8080/logs/warn
-Content-Type: application/json
-
-{ "message": "This is sample warn message, maybe you should look at this" }
+GET http://localhost:8080/cyclist/{{cyclist_id}}
 
 ###
 
-POST http://localhost:8080/logs/error
-Content-Type: application/json
-
-{ "message": "This is sample error message, somethings really wrong" }
+GET http://localhost:8080/cyclist/{{cyclist_id}}/details
 
 ###
 
-POST http://localhost:8080/logs/exception
+POST http://localhost:8080/cyclist/{{cyclist_id}}/addRoute
 Content-Type: application/json
 
-{ "message": "This is sample error message. You've fucked up, but I have some stacktrace." }
+{
+  "kilometers": 30.7,
+  "startedAt": 1685951547232,
+  "finishedAt": 1685957428000
+}
+
+
+
+
+
+### 
+
+GET http://localhost:8080/cyclist/15391974-d47d-42bc-8eab-5786a9d31a48
 
 ###
+
+GET http://localhost:8080/cyclist/15391974-d47d-42bc-8eab-5786a9d31a48/details
+
+###
+
+POST http://localhost:8080/cyclist/15391974-d47d-42bc-8eab-5786a9d31a48/addRoute
+Content-Type: application/json
+
+{
+  "kilometers": 30.7,
+  "startedAt": 1685951547232,
+  "finishedAt": 1685957428000
+}
