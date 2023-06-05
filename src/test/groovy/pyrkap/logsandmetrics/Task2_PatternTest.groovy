@@ -3,7 +3,7 @@ package pyrkap.logsandmetrics
 import org.slf4j.LoggerFactory
 import spock.lang.Specification
 
-class Task1_PatternTest extends Specification implements LogFileReader {
+class Task2_PatternTest extends Specification implements LogFileReader {
 
     def "log file should contain full date, time and message"() {
         given:
@@ -68,9 +68,9 @@ class Task1_PatternTest extends Specification implements LogFileReader {
     def "log file should contain full date, time, thread-name and message"() {
         given:
         def logger = LoggerFactory.getLogger("logger-test-4")
-        // looking for line e.g. 2023-05-27 10:20:24,028 logger-test-3-a Test message
+        // looking for line e.g. 2023-05-27 10:20:24,028 thread-a Test message
         def expectedThreadAPattern = ~"^[0-9\\-]{10}\\s[0-9:,]{12}\\sthread-a\\sTest\\smessage\$"
-        // looking for line e.g. 2023-05-27 10:20:24,028 logger-test-3-b Test message
+        // looking for line e.g. 2023-05-27 10:20:24,028 thread-b Test message
         def expectedThreadBPattern = ~"^[0-9\\-]{10}\\s[0-9:,]{12}\\sthread-b\\sTest\\smessage\$"
 
         when:

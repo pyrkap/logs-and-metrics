@@ -1,5 +1,6 @@
 package pyrkap.logsandmetrics.infrastructure.repository;
 
+import io.micrometer.core.annotation.Timed;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class InMemoryCyclistRepository implements CyclistRepository {
     private final Random random = new Random();
 
     @Override
+    @Timed(value = "cyclist.repository", extraTags = {"method", "insert"})
     public Cyclist insert(Cyclist cyclist) {
         sleepRandom();
         if (cyclistExistsByName(cyclist.name()))
@@ -34,6 +36,7 @@ public class InMemoryCyclistRepository implements CyclistRepository {
     }
 
     @Override
+    @Timed(value = "cyclist.repository", extraTags = {"method", "update"})
     public Cyclist update(Cyclist cyclist) {
         sleepRandom();
         if (!cyclistExistsById(cyclist.id()))
@@ -43,6 +46,7 @@ public class InMemoryCyclistRepository implements CyclistRepository {
     }
 
     @Override
+    @Timed(value = "cyclist.repository", extraTags = {"method", "get"})
     public Cyclist get(UUID cyclistId) {
         sleepRandom();
         if (!cyclistExistsById(cyclistId))

@@ -2,7 +2,7 @@ PUT http://localhost:8080/cyclist/new
 Content-Type: application/json
 
 {
-  "name": "cyclist_10"
+  "name": "cyclist_11"
 }
 
 > {%
