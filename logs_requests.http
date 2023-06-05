@@ -1,0 +1,27 @@
+POST http://localhost:8080/logs/info
+Content-Type: application/json
+
+{ "message": "This is sample info message, you don't need to worry" }
+
+###
+
+POST http://localhost:8080/logs/warn
+Content-Type: application/json
+
+{ "message": "This is sample warn message, maybe you should look at this" }
+
+###
+
+POST http://localhost:8080/logs/error
+Content-Type: application/json
+
+{ "message": "This is sample error message, somethings really wrong" }
+
+###
+
+POST http://localhost:8080/logs/exception
+Content-Type: application/json
+
+{ "message": "This is sample error message. You've fucked up, but I have some stacktrace." }
+
+###
