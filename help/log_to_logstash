@@ -1,0 +1,25 @@
+LOGSTASH
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:50000</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <omitEmptyFields>true</omitEmptyFields>
+				<pattern>
+					{
+						"timestamp": "%d",
+						"severity": "%level",
+						"logger": "%logger",
+						"thread": "%thread",
+						"message": "%message",
+						"stack_trace": "%ex{full}"
+					}
+                    </pattern>
+                </pattern>
+                <stackTrace/>
+            </providers>
+        </encoder>
+    </appender>

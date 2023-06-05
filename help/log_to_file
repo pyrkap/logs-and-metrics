@@ -1,0 +1,56 @@
+<property name="LOG_DIR" value="src/test/resources/logs"/>
+    <!--TEST 1-->
+    <appender name="appender-test-1" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/file-test-1.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>...</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="logger-test-1">
+        <appender-ref ref="appender-test-1"/>
+    </logger>
+    
+    <!--TEST 2-->
+    <appender name="appender-test-2" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/file-test-2.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>...</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="logger-test-2">
+        <appender-ref ref="appender-test-2"/>
+    </logger>
+    
+    <!--TEST 3-->
+    <appender name="appender-test-3" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/file-test-3.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>...</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="logger-test-3-a">
+        <appender-ref ref="appender-test-3"/>
+    </logger>
+
+    <logger name="logger-test-3-b">
+        <appender-ref ref="appender-test-3"/>
+    </logger>
+
+    <!--TEST 4-->
+    <appender name="appender-test-4" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_DIR}/file-test-4.log</file>
+        <append>false</append>
+        <encoder>
+            <pattern>...</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="logger-test-4">
+        <appender-ref ref="appender-test-4"/>
+    </logger>
