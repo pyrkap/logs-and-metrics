@@ -1,9 +1,11 @@
 PUT http://localhost:8080/cyclist/new
 Content-Type: application/json
 
-{ "name":  "ppyrka" }
+{
+  "name": "ppyrka"
+}
 
-> {% 
+> {%
     client.global.set("cyclist_id", response.body.id);
 %}
 
@@ -25,10 +27,6 @@ Content-Type: application/json
   "startedAt": 1685951547232,
   "finishedAt": 1685957428000
 }
-
-
-
-
 
 ### 
 

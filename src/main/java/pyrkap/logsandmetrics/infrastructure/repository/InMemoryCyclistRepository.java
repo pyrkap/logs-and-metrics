@@ -36,20 +36,20 @@ public class InMemoryCyclistRepository implements CyclistRepository {
     @Override
     public Cyclist get(UUID cyclistId) {
         sleepRandom();
-        if(!cyclistExistsById(cyclistId))
+        if (!cyclistExistsById(cyclistId))
             throw new CyclistNotFoundException(cyclistId);
         else return map.get(cyclistId);
     }
-    
+
     private Cyclist save(Cyclist cyclist) {
         map.put(cyclist.id(), cyclist);
         return cyclist;
     }
-    
+
     private Boolean cyclistExistsById(UUID cyclistId) {
         return map.containsKey(cyclistId);
     }
-    
+
     private Boolean cyclistExistsByName(String name) {
         return map.values().stream().anyMatch(savedCyclist -> savedCyclist.name().equals(name));
     }

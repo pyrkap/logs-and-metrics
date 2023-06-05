@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class LogsAndMetricsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LogsAndMetricsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LogsAndMetricsApplication.class, args);
+    }
 
 }

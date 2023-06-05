@@ -16,11 +16,11 @@ public class RouteDto {
         this.startedAt = startedAt;
         this.finishedAt = finishedAt;
     }
-    
+
     public Route toRoute() {
         return new Route(kilometers, Instant.ofEpochMilli(startedAt), Instant.ofEpochMilli(finishedAt));
     }
-    
+
     public static RouteDto of(Route route) {
         return new RouteDto(
                 route.kilometers(),

@@ -8,6 +8,8 @@ import java.util.UUID;
 
 public interface CyclistRepository {
     Cyclist insert(Cyclist cyclist) throws CyclistAlreadyExistsException;
+
     Cyclist update(Cyclist cyclist) throws CyclistNotFoundException;
+
     Cyclist get(UUID cyclistId) throws CyclistNotFoundException;
 }

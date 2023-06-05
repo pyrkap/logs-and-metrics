@@ -14,7 +14,7 @@ public class SimplifiedCyclistDto {
         this.kilometersDone = kilometersDone;
         this.timeOnBike = timeOnBike;
     }
-    
+
     public static SimplifiedCyclistDto of(Cyclist cyclist) {
         return new SimplifiedCyclistDto(
                 cyclist.id().toString(),

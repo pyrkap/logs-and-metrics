@@ -11,17 +11,17 @@ import pyrkap.logsandmetrics.infrastructure.api.dtos.MessageDto;
 
 @ControllerAdvice
 public class CustomExceptionHandler {
-    
+
     @ExceptionHandler(value = {CyclistAlreadyExistsException.class})
     public ResponseEntity<MessageDto> handle(CyclistAlreadyExistsException e) {
         return new ResponseEntity<>(new MessageDto(e.getMessage()), HttpStatus.CONFLICT);
     }
-    
+
     @ExceptionHandler(value = {CyclistNotFoundException.class})
     public ResponseEntity<MessageDto> handle(CyclistNotFoundException e) {
         return new ResponseEntity<>(new MessageDto(e.getMessage()), HttpStatus.NOT_FOUND);
     }
-    
+
     @ExceptionHandler(value = {InvalidIdException.class})
     public ResponseEntity<MessageDto> handle(InvalidIdException e) {
         return new ResponseEntity<>(new MessageDto(e.getMessage()), HttpStatus.BAD_REQUEST);

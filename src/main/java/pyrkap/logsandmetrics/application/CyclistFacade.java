@@ -18,7 +18,7 @@ public class CyclistFacade {
     ) {
         this.repository = cyclistRepository;
     }
-    
+
     public Cyclist getCyclist(String id) throws InvalidIdException, CyclistNotFoundException {
         UUID cyclistId = parseIdOrThrow(id);
         Cyclist c = repository.get(cyclistId);
@@ -35,7 +35,7 @@ public class CyclistFacade {
         Cyclist c = getCyclist(cyclistId).update(route);
         return repository.update(c);
     }
-    
+
     private UUID parseIdOrThrow(String id) throws InvalidIdException {
         try {
             return UUID.fromString(id);
