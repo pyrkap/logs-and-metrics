@@ -1,8 +1,5 @@
 package pyrkap.logsandmetrics.infrastructure.repository;
 
-import io.micrometer.core.instrument.Gauge;
-import io.micrometer.core.instrument.MeterRegistry;
-import io.micrometer.core.instrument.Timer;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,21 +18,13 @@ import java.util.UUID;
 
 @Repository
 public class InMemoryCyclistRepository implements CyclistRepository {
-
-    private final MeterRegistry meterRegistry;
     private final Logger logger = LoggerFactory.getLogger(InMemoryCyclistRepository.class);
 
     private final Map<UUID, Cyclist> cyclists = new HashMap<>();
     private final Random random = new Random();
-    
-    public InMemoryCyclistRepository(MeterRegistry meterRegistry) {
-        this.meterRegistry = meterRegistry;
-        Gauge.builder("cyclists.repository.size", cyclists, Map::size).register(this.meterRegistry);
-    }
 
     @Override
     public Cyclist insert(Cyclist cyclist) {
-        meterRegistry.counter("cyclists.repository", "method", "insert").increment();
         if (cyclistExistsByName(cyclist.name()))
             throw new CyclistAlreadyExistsException(cyclist.name());
         logger.info("Adding new cyclist: id={}, name={}", cyclist.id(), cyclist.name());
@@ -44,7 +33,6 @@ public class InMemoryCyclistRepository implements CyclistRepository {
 
     @Override
     public Cyclist update(Cyclist cyclist) {
-        meterRegistry.counter("cyclists.repository", "method", "update").increment();
         if (!cyclistExistsById(cyclist.id()))
             throw new CyclistNotFoundException(cyclist.id());
         logger.info("Updating cyclist: id={}, name={}", cyclist.id(), cyclist.name());
@@ -59,11 +47,8 @@ public class InMemoryCyclistRepository implements CyclistRepository {
     }
 
     private Cyclist save(Cyclist cyclist) {
-        Timer timer = meterRegistry.timer("cyclists.repository", "method", "save");
-        timer.record(() -> {
-            sleepRandom();
-            cyclists.put(cyclist.id(), cyclist);
-        });
+        sleepRandom();
+        cyclists.put(cyclist.id(), cyclist);
         return cyclist;
     }
 
