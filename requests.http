@@ -2,7 +2,7 @@ PUT http://localhost:8080/cyclist/new
 Content-Type: application/json
 
 {
-  "name": "ppyrka"
+  "name": "cyclist_10"
 }
 
 > {%
@@ -38,7 +38,7 @@ GET http://localhost:8080/cyclist/15391974-d47d-42bc-8eab-5786a9d31a48/details
 
 ###
 
-POST http://localhost:8080/cyclist/15391974-d47d-42bc-8eab-5786a9d31a48/addRoute
+POST http://localhost:8080/cyclist/88a2c6a7-8353-4570-b72e-a8c218720d89/addRoute
 Content-Type: application/json
 
 {

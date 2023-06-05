@@ -1,6 +1,7 @@
 package pyrkap.logsandmetrics.application;
 
 import org.springframework.stereotype.Service;
+import pyrkap.logsandmetrics.domain.exceptions.CyclistAlreadyExistsException;
 import pyrkap.logsandmetrics.domain.exceptions.CyclistNotFoundException;
 import pyrkap.logsandmetrics.domain.exceptions.InvalidIdException;
 import pyrkap.logsandmetrics.domain.model.Cyclist;
@@ -21,17 +22,15 @@ public class CyclistFacade {
 
     public Cyclist getCyclist(String id) throws InvalidIdException, CyclistNotFoundException {
         UUID cyclistId = parseIdOrThrow(id);
-        Cyclist c = repository.get(cyclistId);
-        if (c == null) throw new CyclistNotFoundException(cyclistId);
-        else return c;
+        return repository.get(cyclistId);
     }
 
-    public Cyclist addCyclist(String name) {
+    public Cyclist addCyclist(String name) throws CyclistAlreadyExistsException {
         Cyclist cyclist = Cyclist.create(name);
         return repository.insert(cyclist);
     }
 
-    public Cyclist addRoute(String cyclistId, Route route) {
+    public Cyclist addRoute(String cyclistId, Route route) throws InvalidIdException, CyclistNotFoundException {
         Cyclist c = getCyclist(cyclistId).update(route);
         return repository.update(c);
     }
