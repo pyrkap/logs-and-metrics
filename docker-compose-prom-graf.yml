@@ -14,7 +14,9 @@ services:
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
-    command: "--config.file=/etc/prometheus/config.yml"
+    command:
+      - "--config.file=/etc/prometheus/config.yml"
+      - "--storage.tsdb.retention.time=60m"
     restart: unless-stopped
 
   Grafana:
